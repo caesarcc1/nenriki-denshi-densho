@@ -88,6 +88,7 @@ body {
   z-index: 100;
   backdrop-filter: blur(8px);
   transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 body.header-collapsed .app-header {
@@ -832,9 +833,14 @@ body.header-collapsed .app-header {
    RESPONSIVIDADE MOBILE & TABLET (TATAME RESPONSIVO)
    =================================================== */
 @media (max-width: 1024px) {
+  .app-header {
+    padding: 10px 16px;
+    flex-shrink: 0;
+  }
+
   .header-inner {
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
   }
   
   .header-search-box {
@@ -861,12 +867,13 @@ body.header-collapsed .app-header {
 
 @media (max-width: 768px) {
   .app-header {
-    padding: 8px 14px;
+    padding: 8px 12px;
+    flex-shrink: 0;
   }
 
   .brand-logo-img {
-    width: 38px;
-    height: 38px;
+    width: 36px;
+    height: 36px;
   }
 
   .brand-subtitle {
@@ -874,12 +881,13 @@ body.header-collapsed .app-header {
   }
 
   .backup-actions .btn-header-icon {
-    padding: 5px 8px;
-    font-size: 0.75rem;
+    padding: 4px 8px;
+    font-size: 0.72rem;
   }
 
   .nav-tabs-wrapper {
-    padding: 4px 8px;
+    padding: 4px 6px;
+    flex-shrink: 0;
   }
 
   .nav-tab-btn {
@@ -889,12 +897,29 @@ body.header-collapsed .app-header {
   }
 
   .nav-tab-btn svg {
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
   }
 
+  /* Filtro de Makis no Celular: linha com rolagem suave por toque */
   .maki-pills-filter {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    gap: 4px;
+    padding: 2px 0;
+  }
+
+  .maki-pills-filter::-webkit-scrollbar {
     display: none;
+  }
+
+  .maki-filter-pill {
+    flex: 0 0 auto;
+    padding: 3px 8px;
+    font-size: 0.72rem;
   }
 
   .grid-view-content {
@@ -906,20 +931,20 @@ body.header-collapsed .app-header {
 
 @media (max-width: 600px) {
   .brand-logo-img {
-    width: 44px;
-    height: 44px;
+    width: 34px;
+    height: 34px;
   }
 
   .main-kanji {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
   }
 
   .main-romaji {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
   }
 
   .nav-tab-btn {
-    padding: 6px 10px;
-    font-size: 0.8rem;
+    padding: 4px 8px;
+    font-size: 0.74rem;
   }
 }
