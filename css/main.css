@@ -356,6 +356,8 @@ body.header-collapsed .app-header {
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
+}
+
 .maki-filter-pill:hover {
   color: var(--text-primary);
   border-color: var(--text-secondary);
