@@ -1287,29 +1287,79 @@
 }
 
 /* ===================================================
-   RESPONSIVIDADE MOBILE & TABLET (MODAL)
+   RESPONSIVIDADE MOBILE & TABLET (MODAL DE TÉCNICAS)
    =================================================== */
 @media (max-width: 768px) {
   .modal-overlay {
     padding: 6px;
+    align-items: flex-end;
   }
 
   .modal-window {
-    width: 98vw;
-    max-height: 96vh;
-    border-radius: 12px;
+    width: 100vw;
+    max-width: 100vw;
+    max-height: 94vh;
+    border-radius: 16px 16px 0 0;
+    margin: 0;
+  }
+
+  /* Oculta botões laterais flutuantes que cobrem o texto no celular */
+  .lateral-nav-btn {
+    display: none !important;
   }
 
   .modal-header {
     flex-direction: column;
     padding: 12px 14px;
-    gap: 10px;
+    gap: 8px;
     align-items: stretch;
   }
 
   .header-main-content {
     width: 100%;
     min-width: 0;
+    gap: 6px;
+  }
+
+  .header-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .badge-maki, .badge-category, .badge-custom, .keiko-chip {
+    font-size: 0.7rem;
+    padding: 2px 7px;
+  }
+
+  .header-titles {
+    width: 100%;
+  }
+
+  .title-main-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+  }
+
+  .tech-modal-title {
+    font-size: 1.25rem;
+    line-height: 1.2;
+    word-break: normal;
+  }
+
+  .tech-modal-kanji {
+    font-size: 1.15rem;
+    line-height: 1.2;
+    white-space: normal;
+  }
+
+  .tech-modal-translation {
+    font-size: 0.82rem;
+    line-height: 1.35;
+    margin-top: 2px;
   }
 
   .header-actions-col {
@@ -1317,51 +1367,95 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
   }
 
   .header-actions-top-row {
-    flex-wrap: wrap;
+    display: flex;
+    align-items: center;
     gap: 6px;
   }
 
-  .tech-modal-title {
-    font-size: clamp(1.15rem, 4.5vw, 1.45rem);
-    line-height: 1.25;
-    word-break: normal;
+  .modal-action-btn, .btn-modal-back {
+    padding: 4px 8px;
+    font-size: 0.74rem;
   }
 
-  .tech-modal-kanji {
-    font-size: clamp(1.15rem, 4.5vw, 1.35rem);
-    white-space: normal;
+  .modal-close-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 1.3rem;
   }
 
-  .tech-modal-translation {
-    font-size: 0.88rem;
-    line-height: 1.35;
+  /* Barra de Navegação Anterior/Próxima */
+  .modal-nav-strip {
+    padding: 6px 10px;
+    gap: 4px;
   }
 
+  .nav-arrow-btn {
+    padding: 4px 8px;
+    font-size: 0.74rem;
+  }
+
+  .nav-tech-preview {
+    display: none !important;
+  }
+
+  .nav-counter-pill {
+    padding: 2px 6px;
+    font-size: 0.72rem;
+  }
+
+  /* Abas do Modal deslizáveis por toque */
+  .modal-tabs-bar {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px 10px;
+    gap: 4px;
+    background: #0d0f15;
+  }
+
+  .modal-tabs-bar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .tab-btn {
+    flex: 0 0 auto;
+    padding: 6px 10px;
+    font-size: 0.74rem;
+    white-space: nowrap;
+  }
+
+  /* Corpo do Modal */
   .modal-body {
-    padding: 14px 16px;
-    gap: 14px;
+    padding: 12px 14px;
+    gap: 12px;
+    max-height: calc(94vh - 210px);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
   }
 
   .two-col-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
   }
 
-  .modal-nav-footer {
+  .keiko-tracker-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px;
+  }
+
+  .btn-keiko-action {
+    width: 100%;
+    justify-content: center;
     padding: 8px 12px;
-    gap: 6px;
-  }
-
-  .btn-modal-nav {
-    padding: 6px 10px;
-    font-size: 0.78rem;
-  }
-
-  .nav-counter-badge {
-    font-size: 0.72rem;
-    padding: 3px 8px;
   }
 }
