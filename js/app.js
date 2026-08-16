@@ -125,6 +125,9 @@ class NenrikiApp {
     if (btnToggleHeader) {
       btnToggleHeader.addEventListener("click", () => {
         document.body.classList.toggle("header-collapsed");
+        window.scrollTo(0, 0);
+        if (document.documentElement) document.documentElement.scrollTop = 0;
+        if (document.body) document.body.scrollTop = 0;
         const isCollapsed = document.body.classList.contains("header-collapsed");
         const text = btnToggleHeader.querySelector(".toggle-header-text");
         const svg = btnToggleHeader.querySelector("svg");

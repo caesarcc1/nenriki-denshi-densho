@@ -422,9 +422,11 @@
    CORPO DO MODAL (CONTEÚDO)
    =================================================== */
 .modal-body {
-  padding: 28px;
+  padding: 24px 28px 60px 28px;
   overflow-y: auto;
-  flex: 1;
+  flex: 1 1 auto;
+  min-height: 0;
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Keiko Tracker (Registro de Treino no Modal) */
@@ -1433,9 +1435,11 @@
 
   /* Corpo do Modal */
   .modal-body {
-    padding: 12px 14px;
+    padding: 12px 14px 80px 14px;
     gap: 12px;
-    max-height: calc(94vh - 210px);
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: calc(94vh - 180px);
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
   }
