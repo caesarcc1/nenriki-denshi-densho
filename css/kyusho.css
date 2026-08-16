@@ -677,18 +677,95 @@
   width: 100%;
 }
 
-@media (max-width: 1200px) {
-  .pranchas-grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
-
+/* ===================================================
+   RESPONSIVIDADE MOBILE & TABLET (KYŪSHO)
+   =================================================== */
 @media (max-width: 992px) {
   .kyusho-main-content {
     grid-template-columns: 1fr;
+    gap: 16px;
   }
 
   .kyusho-side-panel {
     position: static;
+    max-height: none;
+  }
+
+  .diagrams-viewport {
+    height: calc(100vh - 160px);
+    min-height: 520px;
+  }
+}
+
+@media (max-width: 768px) {
+  .kyusho-toolbar {
+    position: sticky;
+    top: 0;
+    padding: 8px 10px;
+    gap: 8px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .kyusho-filters {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 2px;
+    gap: 6px;
+  }
+
+  .kyusho-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .kfilter-btn {
+    flex: 0 0 auto;
+    padding: 5px 10px;
+    font-size: 0.75rem;
+  }
+
+  .kyusho-search-box {
+    width: 100%;
+  }
+
+  .kyusho-search-box input {
+    width: 100%;
+    font-size: 0.78rem;
+    padding: 6px 12px 6px 32px;
+  }
+
+  .diagrams-viewport {
+    height: calc(100vh - 140px);
+    min-height: 460px;
+  }
+
+  .diagrams-top-bar {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    gap: 6px;
+  }
+
+  .kview-toggle-btn {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+  }
+
+  .kzoom-btn {
+    width: 28px;
+    height: 28px;
+    font-size: 0.95rem;
+  }
+
+  .region-focus-label {
+    font-size: 0.7rem;
+    padding: 3px 8px;
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
