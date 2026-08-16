@@ -568,6 +568,61 @@
   line-height: 1.5;
 }
 
+/* ===================================================
+   FAIXA DE NAVEGAÇÃO ENTRE PONTOS KYUSHO
+   =================================================== */
+.kdetail-nav-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.knav-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  padding: 6px 12px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.knav-btn:hover {
+  background: rgba(234, 179, 8, 0.15);
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+  transform: translateY(-1px);
+}
+
+.knav-tag {
+  background: rgba(234, 179, 8, 0.18);
+  color: var(--gold-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+}
+
+.knav-counter {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  background: #131520;
+  padding: 4px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--border-subtle);
+  white-space: nowrap;
+}
+
 .kdetail-badge {
   display: inline-block;
   background: rgba(56, 189, 248, 0.15);

@@ -163,6 +163,48 @@ class NenrikiKyusho {
         this.renderDiagrams();
       });
     }
+
+    // Navegação entre Kyūsho via Teclado (Setas Esquerda ← / Direita →)
+    window.addEventListener("keydown", (e) => {
+      const activeTag = document.activeElement ? document.activeElement.tagName.toLowerCase() : "";
+      if (activeTag === "input" || activeTag === "textarea") return;
+
+      const viewKyusho = document.getElementById("viewKyusho");
+      if (!viewKyusho || viewKyusho.classList.contains("hidden")) return;
+      if (!this.selectedKyusho) return;
+
+      if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        this.navigateKyusho(-1);
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        this.navigateKyusho(1);
+      }
+    });
+  }
+
+  navigateKyusho(direction) {
+    if (!this.kyushoList || this.kyushoList.length === 0) return;
+    const sortedList = [...this.kyushoList].sort((a, b) => (a.number || 0) - (b.number || 0));
+    
+    let currentIndex = -1;
+    if (this.selectedKyusho) {
+      currentIndex = sortedList.findIndex(k => k.id === this.selectedKyusho.id || k.number === this.selectedKyusho.number);
+    }
+
+    if (currentIndex === -1) {
+      this.selectKyusho(sortedList[0]);
+      return;
+    }
+
+    let newIndex = currentIndex + direction;
+    if (newIndex < 0) newIndex = sortedList.length - 1;
+    if (newIndex >= sortedList.length) newIndex = 0;
+
+    const targetPoint = sortedList[newIndex];
+    if (targetPoint) {
+      this.selectKyusho(targetPoint);
+    }
   }
 
   // =========================================================================
@@ -1336,7 +1378,8 @@ class NenrikiKyusho {
 
     // Atualiza classes selecionadas nos marcadores
     this.container.querySelectorAll(".kyusho-marker").forEach(el => {
-      if (el.getAttribute("data-id") === point.id) {
+      const elId = el.getAttribute("data-id");
+      if (elId === point.id || elId === `kyusho-${point.number}`) {
         el.classList.add("selected");
       } else {
         el.classList.remove("selected");
@@ -1351,6 +1394,13 @@ class NenrikiKyusho {
     placeholder.classList.add("hidden");
     content.classList.remove("hidden");
 
+    // Lista ordenada por número para navegação sequencial (1 a 60)
+    const sortedList = [...this.kyushoList].sort((a, b) => (a.number || 0) - (b.number || 0));
+    const currentIndex = sortedList.findIndex(k => k.id === point.id || k.number === point.number);
+    const totalPoints = sortedList.length;
+    const prevPoint = currentIndex > 0 ? sortedList[currentIndex - 1] : sortedList[totalPoints - 1];
+    const nextPoint = currentIndex < totalPoints - 1 ? sortedList[currentIndex + 1] : sortedList[0];
+
     // Procura técnicas do Densho que citam este Kyūsho
     const database = window.NENRIKI_DATABASE || {};
     const relatedTechs = (database.techniques || []).filter(t => {
@@ -1359,6 +1409,25 @@ class NenrikiKyusho {
     });
 
     content.innerHTML = `
+      <!-- Faixa de Navegação Anterior / Próximo Kyūsho -->
+      <div class="kdetail-nav-strip">
+        <button class="knav-btn knav-prev" id="btnKyushoPrev" title="Kyūsho Anterior: Nº ${prevPoint ? prevPoint.number : ''} - ${prevPoint ? prevPoint.name : ''} (Seta ←)">
+          <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+          <span class="knav-text">Anterior</span>
+          ${prevPoint ? `<span class="knav-tag">#${prevPoint.number}</span>` : ''}
+        </button>
+
+        <div class="knav-counter">
+          <span>Nº <strong>${point.number}</strong> de <strong>${totalPoints}</strong></span>
+        </div>
+
+        <button class="knav-btn knav-next" id="btnKyushoNext" title="Próximo Kyūsho: Nº ${nextPoint ? nextPoint.number : ''} - ${nextPoint ? nextPoint.name : ''} (Seta →)">
+          ${nextPoint ? `<span class="knav-tag">#${nextPoint.number}</span>` : ''}
+          <span class="knav-text">Próximo</span>
+          <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+      </div>
+
       <div class="kdetail-header">
         <div class="kdetail-badge">Nº ${point.number} • ${point.view === 'front' ? 'Omote (Frente)' : 'Ura (Costas)'}</div>
         <div class="kdetail-titles">
@@ -1418,6 +1487,22 @@ class NenrikiKyusho {
         </div>
       </div>
     `;
+
+    // Botões de navegação Anterior / Próximo
+    const btnPrev = document.getElementById("btnKyushoPrev");
+    if (btnPrev && prevPoint) {
+      btnPrev.addEventListener("click", () => this.selectKyusho(prevPoint));
+    }
+    const btnNext = document.getElementById("btnKyushoNext");
+    if (btnNext && nextPoint) {
+      btnNext.addEventListener("click", () => this.selectKyusho(nextPoint));
+    }
+
+    // Scroll suave do painel lateral para o topo
+    const sidePanel = document.getElementById("kyushoSidePanel");
+    if (sidePanel) {
+      sidePanel.scrollTop = 0;
+    }
 
     // Ações de clique nas técnicas relacionadas do painel lateral
     content.querySelectorAll(".ktech-chip-btn").forEach(btn => {
