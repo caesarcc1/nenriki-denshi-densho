@@ -573,8 +573,8 @@ class NenrikiMindmap {
   resetView() {
     if (!this.wrapper) return;
     const rect = this.wrapper.getBoundingClientRect();
-    const w = rect.width || window.innerWidth;
-    const h = rect.height || (window.innerHeight - 110);
+    const w = (rect && rect.width > 50) ? rect.width : (window.innerWidth || 1200);
+    const h = (rect && rect.height > 50) ? rect.height : ((window.innerHeight ? window.innerHeight - 110 : 700));
 
     this.panX = w / 2;
     this.panY = h / 2;

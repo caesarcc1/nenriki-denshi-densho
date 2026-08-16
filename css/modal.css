@@ -20,6 +20,15 @@
   animation: fadeIn 0.25s ease-out;
 }
 
+.modal-overlay.hidden,
+.modal-overlay[style*="display: none"],
+#techniqueModalRoot.hidden {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; }
   to { opacity: 1; }

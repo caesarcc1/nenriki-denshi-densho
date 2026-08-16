@@ -20,9 +20,11 @@ class NenrikiModal {
       modalRoot = document.createElement("div");
       modalRoot.id = "techniqueModalRoot";
       modalRoot.className = "modal-overlay hidden";
+      modalRoot.style.display = "none";
       document.body.appendChild(modalRoot);
     }
     this.modalEl = modalRoot;
+    this.modalEl.style.display = "none";
 
     // Fechar ao clicar no overlay de fundo ou com tecla ESC
     this.modalEl.addEventListener("click", (e) => {
@@ -87,12 +89,19 @@ class NenrikiModal {
     this.currentTech = JSON.parse(JSON.stringify(tech));
     this.isEditing = false;
     this.render();
-    this.modalEl.classList.remove("hidden");
+    if (this.modalEl) {
+      this.modalEl.classList.remove("hidden");
+      this.modalEl.style.display = "flex";
+    }
     document.body.style.overflow = "hidden";
   }
 
   close() {
-    this.modalEl.classList.add("hidden");
+    if (this.modalEl) {
+      this.modalEl.classList.add("hidden");
+      this.modalEl.style.display = "none";
+      this.modalEl.innerHTML = "";
+    }
     document.body.style.overflow = "";
     this.currentTech = null;
     this.isEditing = false;
