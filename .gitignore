@@ -1,0 +1,17 @@
+# Sistema Operacional
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ambientes temporários e logs
+*.log
+node_modules/
+.vscode/
+.idea/
+
+# Scratch & Backups temporários
+scratch/
+*.PNG
+*.webp
+*.pdf
+publicar.bat
