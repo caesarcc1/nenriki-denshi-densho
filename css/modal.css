@@ -1,0 +1,1278 @@
+/**
+ * Nenriki Denshi Densho (念力 電子伝書)
+ * Estilos do Modal de Detalhes, Edição e Gestão de Henka
+ * Bujinkan Nenriki Dojo
+ */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(4, 5, 8, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-window {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 1180px;
+  width: 95vw;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), 0 0 20px rgba(234, 179, 8, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.modal-window::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--maki-theme, var(--gold-primary));
+}
+
+/* ===================================================
+   CABEÇALHO DO MODAL
+   =================================================== */
+.modal-header {
+  padding: 20px 28px 16px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  background: #10121a;
+  position: relative;
+}
+
+.header-main-content {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.header-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge-maki {
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.badge-category {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.badge-cat-kanji {
+  font-family: var(--font-serif);
+  color: var(--gold-primary);
+  font-weight: 700;
+}
+
+.badge-cat-trans {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.badge-custom {
+  background: rgba(234, 179, 8, 0.15);
+  color: var(--gold-primary);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.74rem;
+  font-weight: 600;
+}
+
+.header-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.title-main-row {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.tech-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.tech-modal-kanji {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--gold-primary);
+}
+
+.tech-modal-translation {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+/* Coluna de Ações à Direita */
+.header-actions-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.header-actions-top-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-actions-bottom-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.btn-modal-back {
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-modal-back:hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  border-color: var(--gold-primary);
+  transform: translateX(-2px);
+}
+
+.modal-action-btn {
+  background: #1c1f2e;
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-family: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.modal-action-btn:hover {
+  background: #272c40;
+  color: var(--text-primary);
+  border-color: var(--gold-primary);
+}
+
+.modal-action-btn.active {
+  background: var(--gold-primary);
+  color: #0b0c10;
+  border-color: var(--gold-primary);
+  font-weight: bold;
+}
+
+.modal-close-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+  transition: color 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close-btn:hover {
+  color: #fff;
+}
+
+/* ===================================================
+   BARRA DE NAVEGAÇÃO ENTRE TÉCNICAS (MODAL NAV STRIP)
+   =================================================== */
+.modal-nav-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 28px;
+  background: #0a0b10;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.nav-arrow-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  max-width: 320px;
+}
+
+.nav-arrow-btn:hover {
+  background: rgba(234, 179, 8, 0.12);
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+}
+
+.nav-btn-text {
+  font-weight: 700;
+}
+
+.nav-tech-preview {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 140px;
+  font-weight: 400;
+}
+
+.nav-counter-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.03);
+  padding: 5px 14px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.nav-counter-maki {
+  color: var(--gold-primary);
+  font-weight: 700;
+}
+
+/* Botões de Navegação Laterais Flutuantes */
+.lateral-nav-btn {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10001;
+  width: 48px;
+  height: 64px;
+  background: rgba(18, 20, 29, 0.9);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+.lateral-nav-btn:hover {
+  background: var(--gold-primary);
+  color: #0b0c10;
+  border-color: var(--gold-primary);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.lateral-nav-prev {
+  left: calc(50vw - 640px);
+}
+
+.lateral-nav-next {
+  right: calc(50vw - 640px);
+}
+
+@media (max-width: 1350px) {
+  .lateral-nav-prev { left: 12px; }
+  .lateral-nav-next { right: 12px; }
+}
+
+@media (max-width: 768px) {
+  .lateral-nav-btn { display: none; }
+  .modal-nav-strip { padding: 8px 16px; }
+  .nav-tech-preview { display: none; }
+}
+
+/* ===================================================
+   BARRA DE ABAS
+   =================================================== */
+.modal-tabs-bar {
+  display: flex;
+  align-items: center;
+  background: #0d0f15;
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0 28px;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.tab-btn {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  color: var(--text-muted);
+  padding: 13px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.tab-btn:hover {
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.tab-btn.active {
+  color: var(--gold-primary);
+  border-bottom-color: var(--gold-primary);
+  background: rgba(234, 179, 8, 0.05);
+}
+
+.tab-badge {
+  background: rgba(234, 179, 8, 0.2);
+  color: var(--gold-primary);
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-size: 0.72rem;
+  font-weight: bold;
+}
+
+/* ===================================================
+   CORPO DO MODAL (CONTEÚDO)
+   =================================================== */
+.modal-body {
+  padding: 28px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* Keiko Tracker (Registro de Treino no Modal) */
+.keiko-tracker-card {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.08) 0%, rgba(18, 20, 28, 0.95) 100%);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.keiko-tracker-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.keiko-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.keiko-info-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.keiko-label {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #4ade80;
+  letter-spacing: 0.5px;
+}
+
+.keiko-status-text {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.keiko-tracker-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.keiko-date-input {
+  background: #12141c;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  color: var(--text-primary);
+  padding: 6px 10px;
+  font-size: 0.82rem;
+  font-family: inherit;
+}
+
+.keiko-date-input:focus {
+  outline: none;
+  border-color: #4ade80;
+}
+
+.btn-mark-trained {
+  background: rgba(34, 197, 94, 0.2);
+  color: #86efac;
+  border: 1px solid rgba(34, 197, 94, 0.5);
+  font-weight: 700;
+  padding: 7px 14px;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-mark-trained:hover {
+  background: #22c55e;
+  color: #0b0c10;
+}
+
+.training-history-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+  width: 100%;
+}
+
+.keiko-chip {
+  background: #17201c;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+  color: #86efac;
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.keiko-chip-remove {
+  background: transparent;
+  border: none;
+  color: #f87171;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
+.section-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 14px;
+}
+
+/* Banner Mnemônico */
+.mnemonic-banner {
+  background: linear-gradient(135deg, rgba(234, 179, 8, 0.12) 0%, rgba(220, 38, 38, 0.08) 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: 10px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.mnemonic-icon {
+  font-size: 1.8rem;
+  line-height: 1;
+}
+
+.mnemonic-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+}
+
+.mnemonic-content {
+  font-size: 1.05rem;
+  color: #fef08a;
+  font-style: italic;
+  line-height: 1.5;
+}
+
+/* Grid de Etimologia */
+.etymology-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.etym-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 12px 16px;
+}
+
+.etym-term {
+  font-family: var(--font-serif);
+  font-size: 1.05rem;
+  font-weight: bold;
+  color: var(--gold-primary);
+  margin-bottom: 4px;
+}
+
+.etym-meaning {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+/* Banner de Contexto da Categoria */
+.category-context-banner {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(234, 179, 8, 0.25);
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+}
+
+.cat-banner-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.cat-banner-icon {
+  font-size: 1.5rem;
+}
+
+.cat-banner-titles {
+  display: flex;
+  flex-direction: column;
+}
+
+.cat-banner-subtitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  letter-spacing: 0.5px;
+}
+
+.cat-banner-name {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.cat-kanji-highlight {
+  font-family: var(--font-serif);
+  color: var(--gold-primary);
+  font-size: 1.15rem;
+}
+
+.cat-trans-highlight {
+  color: var(--gold-primary);
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.cat-banner-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.principles-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 14px 18px;
+}
+
+.box-title {
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+/* ===================================================
+   FLUXO PASSO A PASSO (STEPS FLOW)
+   =================================================== */
+.steps-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.step-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  padding: 16px 18px;
+  display: flex;
+  gap: 14px;
+  position: relative;
+}
+
+.step-icon {
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.step-content {
+  flex: 1;
+}
+
+.step-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--gold-primary);
+  margin-bottom: 4px;
+}
+
+.tori-steps-list {
+  padding-left: 20px;
+  margin-top: 6px;
+}
+
+.tori-steps-list li {
+  margin-bottom: 8px;
+  font-size: 0.92rem;
+  color: #e2e8f0;
+}
+
+.related-kyusho-box {
+  margin-top: 24px;
+  padding: 16px;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 10px;
+}
+
+.kyusho-tags-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.kyusho-tag {
+  background: #162030;
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  color: #38bdf8;
+  padding: 5px 12px;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.kyusho-tag:hover {
+  background: #38bdf8;
+  color: #0b0c10;
+}
+
+/* ===================================================
+   VARIAÇÕES (HENKA)
+   =================================================== */
+.henka-header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.henka-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.henka-item-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  padding: 14px 18px;
+}
+
+.henka-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.henka-badge {
+  background: rgba(234, 179, 8, 0.15);
+  color: var(--gold-primary);
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.henka-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  flex: 1;
+  margin-left: 10px;
+}
+
+.henka-delete-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+.henka-delete-btn:hover {
+  color: #f87171;
+}
+
+.henka-desc {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.add-henka-form {
+  background: #141724;
+  border: 1px solid var(--border-gold);
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.add-henka-form h4 {
+  margin-bottom: 12px;
+  color: var(--gold-primary);
+}
+
+/* ===================================================
+   MÍDIA & VÍDEOS
+   =================================================== */
+.video-embed-wrapper {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 */
+  height: 0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-subtle);
+}
+
+.video-embed-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-placeholder {
+  text-align: center;
+  padding: 40px 20px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 2px dashed var(--border-subtle);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.vicon {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.video-input-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 6px;
+}
+
+.input-with-btn {
+  display: flex;
+  gap: 10px;
+}
+
+/* ===================================================
+   FORMULÁRIOS & CAMPOS DE EDIÇÃO
+   =================================================== */
+.form-group {
+  margin-bottom: 14px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-bottom: 5px;
+}
+
+.form-input, .form-textarea {
+  width: 100%;
+  background: #11131c;
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+  padding: 10px 14px;
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: border-color 0.2s ease;
+}
+
+.form-input:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--gold-primary);
+  background: #161824;
+}
+
+.form-row-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.edit-form-bottom-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.right-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.notes-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.save-status-indicator {
+  font-size: 0.82rem;
+  color: #4ade80;
+  font-weight: 600;
+}
+
+/* ===================================================
+   FICHA TÉCNICA DE IMPRESSÃO (ESTILO DE IMPRESSÃO A4)
+   =================================================== */
+.printable-densho-sheet {
+  display: none;
+}
+
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 8mm 10mm 8mm 10mm;
+  }
+
+  html, body {
+    background: #ffffff !important;
+    color: #0f172a !important;
+    overflow: visible !important;
+    height: auto !important;
+    min-height: 100% !important;
+    font-size: 8.5pt !important;
+    line-height: 1.3 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Oculta absolutamente todos os componentes da interface interativa */
+  body > *:not(#printableDenshoSheet),
+  .app-wrapper,
+  .app-header, 
+  .nav-tabs-wrapper, 
+  .main-viewport,
+  .view-section,
+  .tree-view-content,
+  .grid-view-content,
+  .mindmap-viewport-wrapper,
+  .kyusho-view-wrapper,
+  .flashcards-view-wrapper,
+  .modal-overlay,
+  #techniqueModalRoot,
+  .lateral-nav-btn {
+    display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    position: absolute !important;
+    left: -99999px !important;
+    top: -99999px !important;
+  }
+
+  /* Exibe exclusivamente a Ficha Técnica de Impressão */
+  #printableDenshoSheet,
+  .printable-densho-sheet {
+    display: block !important;
+    visibility: visible !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 auto !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+    color: #0f172a !important;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+  }
+
+  .print-page-wrapper {
+    padding: 0;
+    background: #ffffff;
+    color: #0f172a;
+  }
+
+  /* Cabeçalho do Dojo */
+  .print-dojo-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 2px solid #0f172a;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+  }
+
+  .print-header-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .print-dojo-emblem-img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+
+  .print-main-title {
+    font-size: 1.05rem;
+    font-weight: 900;
+    margin: 0;
+    color: #000;
+    letter-spacing: 0.5px;
+    line-height: 1.1;
+  }
+
+  .print-sub-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #475569;
+    margin: 2px 0 0;
+  }
+
+  .print-maki-badge-box {
+    text-align: right;
+  }
+
+  .print-maki-kanji-big {
+    display: block;
+    font-family: "Noto Serif JP", serif;
+    font-size: 1.05rem;
+    font-weight: 900;
+    color: #000;
+  }
+
+  .print-maki-name-text {
+    font-size: 0.72rem;
+    font-weight: 800;
+    color: #334155;
+  }
+
+  /* Bloco de Identificação da Técnica & Categoria */
+  .print-tech-identity {
+    border: 1.5px solid #64748b;
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-bottom: 8px;
+    background: #f8fafc !important;
+  }
+
+  .print-category-info {
+    font-size: 0.75rem;
+    color: #334155;
+    margin-bottom: 4px;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed #cbd5e1;
+  }
+
+  .print-cat-explanation {
+    font-size: 0.7rem;
+    color: #64748b;
+    margin: 2px 0 0;
+    line-height: 1.25;
+  }
+
+  .print-tech-title-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 4px;
+  }
+
+  .print-tech-romaji {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: #0f172a;
+    margin: 0;
+  }
+
+  .print-tech-kanji {
+    font-family: "Noto Serif JP", serif;
+    font-size: 1.15rem;
+    font-weight: 900;
+    color: #000;
+  }
+
+  .print-tech-translation {
+    font-size: 0.82rem;
+    color: #1e293b;
+    margin: 2px 0 0;
+  }
+
+  /* Seções Padronizadas */
+  .print-section-box {
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    padding: 6px 10px;
+    margin-bottom: 7px;
+    page-break-inside: avoid;
+  }
+
+  .print-section-header {
+    font-size: 0.8rem;
+    font-weight: 800;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 2px;
+    margin: 0 0 5px;
+    color: #0f172a;
+  }
+
+  .print-mnemonic-quote {
+    font-style: italic;
+    font-size: 0.78rem;
+    color: #1e293b;
+    background: #f1f5f9 !important;
+    padding: 4px 8px;
+    border-left: 3px solid #0284c7;
+    margin-bottom: 6px;
+    line-height: 1.25;
+  }
+
+  .print-etym-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.74rem;
+  }
+
+  .print-etym-table th, .print-etym-table td {
+    border: 1px solid #e2e8f0;
+    padding: 3px 6px;
+    text-align: left;
+  }
+
+  .print-etym-table th {
+    background: #f8fafc !important;
+    font-weight: 800;
+    color: #1e293b;
+  }
+
+  .print-step-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 4px;
+    font-size: 0.74rem;
+  }
+
+  .print-step-col strong {
+    display: block;
+    margin-bottom: 1px;
+    color: #0f172a;
+    font-size: 0.74rem;
+  }
+
+  .print-step-col p {
+    margin: 0;
+    line-height: 1.25;
+  }
+
+  .print-step-block {
+    font-size: 0.74rem;
+    margin-bottom: 4px;
+    background: #fafafa !important;
+    padding: 4px 8px;
+    border-radius: 4px;
+    border: 1px solid #f1f5f9;
+  }
+
+  .print-steps-ordered {
+    margin: 2px 0 0;
+    padding-left: 16px;
+    line-height: 1.3;
+  }
+
+  .print-steps-ordered li {
+    margin-bottom: 2px;
+  }
+
+  .print-two-col-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 7px;
+    font-size: 0.74rem;
+    page-break-inside: avoid;
+  }
+
+  .print-col-item {
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    padding: 5px 8px;
+  }
+
+  .print-sub-header {
+    font-size: 0.76rem;
+    font-weight: 800;
+    margin: 0 0 3px;
+    color: #0f172a;
+  }
+
+  .print-kyusho-list {
+    margin: 0;
+    color: #334155;
+    font-weight: 600;
+  }
+
+  .print-henka-row {
+    font-size: 0.72rem;
+    margin-bottom: 2px;
+    line-height: 1.25;
+  }
+
+  .print-keiko-summary, .print-notes-content {
+    font-size: 0.74rem;
+    margin-bottom: 3px;
+  }
+
+  .print-notes-content p {
+    margin: 2px 0 0;
+    color: #475569;
+    font-style: italic;
+  }
+
+  .print-footer-strip {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #64748b;
+    padding-top: 4px;
+    margin-top: 6px;
+    font-size: 0.68rem;
+    color: #64748b;
+    font-weight: 600;
+  }
+}

@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <radialGradient id="redGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#b91c1c"/>
+      <stop offset="90%" stop-color="#991b1b"/>
+      <stop offset="100%" stop-color="#7f1d1d"/>
+    </radialGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a"/>
+      <stop offset="40%" stop-color="#eab308"/>
+      <stop offset="70%" stop-color="#ca8a04"/>
+      <stop offset="100%" stop-color="#a16207"/>
+    </linearGradient>
+    <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Outer Red Border -->
+  <circle cx="250" cy="250" r="240" fill="#0c0d12" stroke="#dc2626" stroke-width="12" filter="url(#dropShadow)"/>
+
+  <!-- Inner Dark Rim -->
+  <circle cx="250" cy="250" r="226" fill="#111217" stroke="url(#goldGrad)" stroke-width="4"/>
+
+  <!-- Central Red Hub -->
+  <circle cx="250" cy="250" r="140" fill="url(#redGlow)" stroke="url(#goldGrad)" stroke-width="6"/>
+
+  <!-- Wheel Handles & Spokes (8 Spokes) -->
+  <g id="spokes" stroke="url(#goldGrad)" stroke-width="10" stroke-linecap="round">
+    <g transform="rotate(0 250 250)">
+      <path d="M 250 110 L 250 25 M 240 45 C 240 30 260 30 260 45 Z" fill="url(#goldGrad)" />
+      <circle cx="250" cy="40" r="10" fill="url(#goldGrad)"/>
+      <polygon points="250,75 258,85 250,95 242,85" fill="#111217" stroke="url(#goldGrad)" stroke-width="2"/>
+    </g>
+    <g transform="rotate(45 250 250)">
+      <path d="M 250 110 L 250 25" stroke="url(#goldGrad)" stroke-width="8"/>
+      <circle cx="250" cy="40" r="10" fill="url(#goldGrad)"/>
+      <polygon points="250,75 258,85 250,95 242,85" fill="#111217" stroke="url(#goldGrad)" stroke-width="2"/>
+    </g>
+    <g transform="rotate(90 250 250)">
+      <path d="M 250 110 L 250 25" stroke="url(#goldGrad)" stroke-width="8"/>
+      <circle cx="250" cy="40" r="10" fill="url(#goldGrad)"/>
+      <polygon points="250,75 258,85 250,95 242,85" fill="#111217" stroke="url(#goldGrad)" stroke-width="2"/>
+    </g>
+    <g transform="rotate(135 250 250)">
+      <path d="M 250 110 L 250 25" stroke="url(#goldGrad)" stroke-width="8"/>
+      <circle cx="250" cy="40" r="10" fill="url(#goldGrad)"/>
+      <polygon points="250,75 258,85 250,95 242,85" fill="#111217" stroke="url(#goldGrad)" stroke-width="2"/>
+    </g>
+    <g transform="rotate(180 250 250)">
+      <path d="M 250 110 L 250 25" stroke="url(#goldGrad)" stroke-width="8"/>
+      <circle cx="250" cy="40" r="10" fill="url(#goldGrad)"/>
+      <polygon points="250,75 258,85 250,95 242,85" fill="#111217" stroke="url(#goldGrad)" stroke-width="2"/>
+    </g>
+    <g transform="rotate(225 250 250)">
+      <path d="M 250 110 L 250 25" stroke="url(#goldGrad)" stroke-width="8"/>
+      <circle cx="250" cy="40" r="10" fill="url(#goldGrad)"/>
+      <polygon points="250,75 258,85 250,95 242,85" fill="#111217" stroke="url(#goldGrad)" stroke-width="2"/>
+    </g>
+    <g transform="rotate(270 250 250)">
+      <path d="M 250 110 L 250 25" stroke="url(#goldGrad)" stroke-width="8"/>
+      <circle cx="250" cy="40" r="10" fill="url(#goldGrad)"/>
+      <polygon points="250,75 258,85 250,95 242,85" fill="#111217" stroke="url(#goldGrad)" stroke-width="2"/>
+    </g>
+    <g transform="rotate(315 250 250)">
+      <path d="M 250 110 L 250 25" stroke="url(#goldGrad)" stroke-width="8"/>
+      <circle cx="250" cy="40" r="10" fill="url(#goldGrad)"/>
+      <polygon points="250,75 258,85 250,95 242,85" fill="#111217" stroke="url(#goldGrad)" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- Dharma Wheel Golden Ring & Spokes Inside -->
+  <circle cx="250" cy="250" r="175" fill="none" stroke="url(#goldGrad)" stroke-width="16" stroke-opacity="0.9"/>
+  <circle cx="250" cy="250" r="162" fill="none" stroke="#78350f" stroke-width="2"/>
+  <circle cx="250" cy="250" r="188" fill="none" stroke="#78350f" stroke-width="2"/>
+
+  <!-- Spoke Pillars radiating from center to inner rim -->
+  <g fill="url(#goldGrad)">
+    <g transform="rotate(0 250 250)"><polygon points="244,240 256,240 253,165 247,165"/><circle cx="250" cy="200" r="8" fill="url(#goldGrad)"/></g>
+    <g transform="rotate(45 250 250)"><polygon points="244,240 256,240 253,165 247,165"/><circle cx="250" cy="200" r="8" fill="url(#goldGrad)"/></g>
+    <g transform="rotate(90 250 250)"><polygon points="244,240 256,240 253,165 247,165"/><circle cx="250" cy="200" r="8" fill="url(#goldGrad)"/></g>
+    <g transform="rotate(135 250 250)"><polygon points="244,240 256,240 253,165 247,165"/><circle cx="250" cy="200" r="8" fill="url(#goldGrad)"/></g>
+    <g transform="rotate(180 250 250)"><polygon points="244,240 256,240 253,165 247,165"/><circle cx="250" cy="200" r="8" fill="url(#goldGrad)"/></g>
+    <g transform="rotate(225 250 250)"><polygon points="244,240 256,240 253,165 247,165"/><circle cx="250" cy="200" r="8" fill="url(#goldGrad)"/></g>
+    <g transform="rotate(270 250 250)"><polygon points="244,240 256,240 253,165 247,165"/><circle cx="250" cy="200" r="8" fill="url(#goldGrad)"/></g>
+    <g transform="rotate(315 250 250)"><polygon points="244,240 256,240 253,165 247,165"/><circle cx="250" cy="200" r="8" fill="url(#goldGrad)"/></g>
+  </g>
+
+  <!-- Center Hub Inner Gold Ring -->
+  <circle cx="250" cy="250" r="60" fill="url(#goldGrad)" stroke="#78350f" stroke-width="4"/>
+  <circle cx="250" cy="250" r="50" fill="#0f0f12" stroke="url(#goldGrad)" stroke-width="3"/>
+
+  <!-- Center Diamond Grid -->
+  <g fill="url(#goldGrad)">
+    <polygon points="250,222 258,230 250,238 242,230"/>
+    <polygon points="238,234 246,242 238,250 230,242"/>
+    <polygon points="262,234 270,242 262,250 254,242"/>
+    <polygon points="250,246 258,254 250,262 242,254"/>
+    <polygon points="238,258 246,266 238,274 230,266"/>
+    <polygon points="262,258 270,266 262,274 254,266"/>
+    <polygon points="250,270 258,278 250,286 242,278"/>
+  </g>
+
+  <!-- Outer Rim Inscriptions -->
+  <path id="topTextArc" d="M 90 250 A 160 160 0 0 1 410 250" fill="none"/>
+  <text fill="url(#goldGrad)" font-family="'Cinzel', 'Trajan Pro', 'Georgia', serif" font-weight="900" font-size="28" letter-spacing="9">
+    <textPath href="#topTextArc" startOffset="50%" text-anchor="middle">
+      NENRIKI DOJO
+    </textPath>
+  </text>
+
+  <!-- Kanjis on the Wheel Rim (念 力 道 場) -->
+  <text x="105" y="325" font-family="'Noto Serif JP', 'Yu Mincho', serif" font-size="34" font-weight="bold" fill="url(#goldGrad)" text-anchor="middle" filter="url(#dropShadow)">念</text>
+  <text x="195" y="420" font-family="'Noto Serif JP', 'Yu Mincho', serif" font-size="34" font-weight="bold" fill="url(#goldGrad)" text-anchor="middle" filter="url(#dropShadow)">力</text>
+  <text x="305" y="420" font-family="'Noto Serif JP', 'Yu Mincho', serif" font-size="34" font-weight="bold" fill="url(#goldGrad)" text-anchor="middle" filter="url(#dropShadow)">道</text>
+  <text x="395" y="325" font-family="'Noto Serif JP', 'Yu Mincho', serif" font-size="34" font-weight="bold" fill="url(#goldGrad)" text-anchor="middle" filter="url(#dropShadow)">場</text>
+
+  <!-- Golden 4-Diamond crests around the black rim -->
+  <g fill="url(#goldGrad)">
+    <g transform="translate(68, 175) scale(0.6)"><polygon points="20,10 30,20 20,30 10,20"/><polygon points="30,20 40,30 30,40 20,30"/><polygon points="10,20 20,30 10,40 0,30"/><polygon points="20,30 30,40 20,50 10,40"/></g>
+    <g transform="translate(400, 175) scale(0.6)"><polygon points="20,10 30,20 20,30 10,20"/><polygon points="30,20 40,30 30,40 20,30"/><polygon points="10,20 20,30 10,40 0,30"/><polygon points="20,30 30,40 20,50 10,40"/></g>
+    <g transform="translate(68, 320) scale(0.6)"><polygon points="20,10 30,20 20,30 10,20"/><polygon points="30,20 40,30 30,40 20,30"/><polygon points="10,20 20,30 10,40 0,30"/><polygon points="20,30 30,40 20,50 10,40"/></g>
+    <g transform="translate(400, 320) scale(0.6)"><polygon points="20,10 30,20 20,30 10,20"/><polygon points="30,20 40,30 30,40 20,30"/><polygon points="10,20 20,30 10,40 0,30"/><polygon points="20,30 30,40 20,50 10,40"/></g>
+    <g transform="translate(235, 430) scale(0.5)"><polygon points="20,10 30,20 20,30 10,20"/><polygon points="30,20 40,30 30,40 20,30"/><polygon points="10,20 20,30 10,40 0,30"/><polygon points="20,30 30,40 20,50 10,40"/></g>
+  </g>
+</svg>
