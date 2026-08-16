@@ -120,6 +120,32 @@ class NenrikiApp {
       });
     }
 
+    // Botão de Recolher / Expandir Cabeçalho (Modo Imersivo)
+    const btnToggleHeader = document.getElementById("btnToggleHeader");
+    if (btnToggleHeader) {
+      btnToggleHeader.addEventListener("click", () => {
+        document.body.classList.toggle("header-collapsed");
+        const isCollapsed = document.body.classList.contains("header-collapsed");
+        const text = btnToggleHeader.querySelector(".toggle-header-text");
+        const svg = btnToggleHeader.querySelector("svg");
+        if (isCollapsed) {
+          if (text) text.innerText = "Expandir Topo";
+          if (svg) svg.innerHTML = '<path fill="currentColor" d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"/>';
+          btnToggleHeader.classList.add("active");
+        } else {
+          if (text) text.innerText = "Recolher Topo";
+          if (svg) svg.innerHTML = '<path fill="currentColor" d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"/>';
+          btnToggleHeader.classList.remove("active");
+        }
+        // Redimensiona o canvas ativo para o novo espaço disponível
+        if (this.mindmap && this.currentView === "viewMindmap") {
+          setTimeout(() => this.mindmap.resetView(), 150);
+        } else if (this.kyushoModule && this.currentView === "viewKyusho") {
+          setTimeout(() => this.kyushoModule.resetView(), 150);
+        }
+      });
+    }
+
     // Atalhos de Teclado
     window.addEventListener("keydown", (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === "k") {
@@ -356,7 +382,8 @@ class NenrikiApp {
 }
 
 if (typeof window !== "undefined") {
+  window.NenrikiApp = NenrikiApp;
   document.addEventListener("DOMContentLoaded", () => {
-    window.NenrikiApp = new NenrikiApp();
+    window.nenrikiApp = new NenrikiApp();
   });
 }
